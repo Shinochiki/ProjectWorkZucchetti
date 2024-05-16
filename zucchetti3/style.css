@@ -1,0 +1,266 @@
+/* ! Reset */
+body,
+html {
+  font-family: "Comfortaa", sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0 0 1rem 0;
+  padding: 0;
+}
+
+ol,
+ul {
+  list-style-type: none;
+}
+
+img {
+  height: auto;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1rem;
+}
+
+h5 {
+  font-size: 0.8rem;
+}
+
+h6 {
+  font-size: 0.6rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(assets/SfondoLoginProjZucchetti.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mode {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+  bottom: 5%;
+  right: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.img_mode {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(assets/illust58-1320.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.night {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(assets/ProjZuccSfondoLoginDarkMode.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 0;
+}
+
+.luce {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(assets/lampadina\ chiara.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.modalità {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+  bottom: 5%;
+  right: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+/* ! Cover */
+.cover {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 10px;
+  margin: 0px;
+  min-height: 600px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-position: center center;
+  background-size: cover;
+  border-radius: 100px;
+}
+
+.yes{
+  background-color:rgba(255, 255, 255, 0.50);
+  box-shadow: 0px 0px 50px 50px rgba(124, 197, 193, 0.30), 0px 0px 50px 2px rgba(124, 197, 193, 0.30) inset;
+}
+
+.nu{
+  background-color:rgba(61, 61, 61, 0.50);
+  box-shadow: 0px 0px 50px 50px rgba(242, 190, 252, 0.20), 0px 0px 50px 2px rgba(242, 190, 252, 0.20) inset;
+}
+
+.cover__content{
+  border-radius: 70px;
+}
+
+.img_logo {
+  height: 250px;
+  width: 50%;
+  margin: 0 auto;
+  background-image: url(./assets/logo.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+form {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 20px 0px 20px 0px;
+  border-radius: 70px;
+}
+
+form input {
+  margin: 0 auto;
+  width: 60%;
+  border: none;
+  height: 50px;
+  border-radius: 7px;
+  outline: none;
+}
+
+.user_text {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  padding-top: 10px;
+  margin: 0 auto;
+  width: 60%;
+  letter-spacing: 2px;
+}
+
+::placeholder {
+  font-weight: bolder;
+  font-size: small;
+  color: #387f7b;
+}
+
+.acceso{
+  color: #55B4B0!important;
+}
+
+.spento{
+  color: #CA9CE1!important;
+}
+
+.on{
+  background-color: #cae5e2 !important;
+}
+
+.off{
+  background-color: #EAD5E6 !important;
+}
+
+
+.invio {
+  border-radius: 7px;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+  width: 20%;
+  height:50px;
+  letter-spacing: 2px;
+  margin-top: 18px;
+  font-size: 18px;
+}
+
+.si{
+  color: #fff;
+}
+
+.no{
+  color: #CA9CE1;
+}
+
+.oui{
+  background-color: #55b4b0 !important;
+}
+
+.nop{
+  background-color: #ca9ce117 !important;
+}

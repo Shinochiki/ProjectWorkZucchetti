@@ -1,0 +1,134 @@
+-------------------------------------- CREA TABELLE --------------------------------------
+
+CREATE TABLE professore (
+    ID INT(5) NOT NULL AUTO_INCREMENT,
+    cognome VARCHAR(25) NOT NULL,
+    nome VARCHAR(25) NOT NULL,
+    usename VARCHAR(25) NOT NULL,
+    password VARCHAR(25) NOT NULL,
+    
+    PRIMARY KEY (ID)
+);
+
+CREATE TABLE classe (
+    ID INT(5) NOT NULL AUTO_INCREMENT,
+    professore_ID INT(5) NOT NULL,
+    anno INT(1) NOT NULL,
+    sezione INT(5) NOT NULL,
+    
+    PRIMARY KEY (ID),
+    FOREIGN KEY (professore_ID) REFERENCES professore (ID)
+);
+
+CREATE TABLE materia (
+    ID INT(5) NOT NULL AUTO_INCREMENT,
+    professore_ID INT(5) NOT NULL,
+    
+    materia VARCHAR(25) NOT NULL,
+    
+    PRIMARY KEY (ID),
+    FOREIGN KEY (professore_ID) REFERENCES professore (ID)
+);
+
+CREATE TABLE studente (
+    ID INT(5) NOT NULL AUTO_INCREMENT,
+    classe_ID INT(5) NOT NULL,
+    
+    cognome VARCHAR(25) NOT NULL,
+    nome VARCHAR(25) NOT NULL,
+    usename VARCHAR(25) NOT NULL,
+    password VARCHAR(25) NOT NULL,
+    
+    PRIMARY KEY (ID),
+    FOREIGN KEY (classe_ID) REFERENCES classe (ID)
+);
+
+CREATE TABLE messaggio (
+    ID INT(5) NOT NULL AUTO_INCREMENT,
+    contenuto VARCHAR(255) NOT NULL,
+    stato INT(1) NOT NULL DEFAULT 0,
+    
+    professore_ID INT(5) NOT NULL,
+   	studente_ID INT(5) NOT NULL,
+    
+    PRIMARY KEY (ID),
+    FOREIGN KEY (professore_ID) REFERENCES professore (ID),
+    FOREIGN KEY (studente_ID) REFERENCES studente (ID)
+);
+
+CREATE TABLE voto (
+    ID INT(10) NOT NULL AUTO_INCREMENT,
+    studente_ID INT(5) NOT NULL,
+    materia_ID INT(5) NOT NULL,
+    
+    voto INT(3) NOT NULL,
+    tipologia VARCHAR(25) NOT NULL,
+    
+    PRIMARY KEY (ID),
+    FOREIGN KEY (studente_ID) REFERENCES studente (ID)
+);
+
+-------------------------------------- RIEMPIE TABELLE --------------------------------------
+
+INSERT INTO professore (username, password, cognome, nome) VALUES ('prof_1','Ciao1234!','Rossi','Paolo')
+
+INSERT INTO classe (anno, sezione, professore_ID) VALUES (5, 'IB', 1);
+INSERT INTO classe (anno, sezione, professore_ID) VALUES (5, 'IC', 1);
+INSERT INTO classe (anno, sezione, professore_ID) VALUES (5, 'ID', 1);
+
+INSERT INTO materia (professore_ID, materia) VALUES (1, 'Italiano');
+INSERT INTO materia (professore_ID, materia) VALUES (1, 'Storia');
+INSERT INTO materia (professore_ID, materia) VALUES (1, 'Matematica');
+INSERT INTO materia (professore_ID, materia) VALUES (1, 'Informatica');
+INSERT INTO materia (professore_ID, materia) VALUES (1, 'Sistemie e Reti');
+
+INSERT INTO studente (username, password, cognome, nome, classe_ID) VALUES ('stud_1','Ciao1234!','Herendeu','Daniele', 1);
+INSERT INTO studente (username, password, cognome, nome, classe_ID) VALUES ('stud_2','Ciao1234!','Lacatena','Angelo', 1);
+INSERT INTO studente (username, password, cognome, nome, classe_ID) VALUES ('stud_3','Ciao1234!','Fradegrada','Gabriele', 2);
+INSERT INTO studente (username, password, cognome, nome, classe_ID) VALUES ('stud_4','Ciao1234!','Cominotti','Stefano', 2);
+INSERT INTO studente (username, password, cognome, nome, classe_ID) VALUES ('stud_5','Ciao1234!','Rinaldi','Filippo', 3);
+
+INSERT INTO voto (materia_ID, studente_ID, tipologia, voto) VALUES(1, 1, 'scritta', 90);
+INSERT INTO voto (materia_ID, studente_ID, tipologia, voto) VALUES(2, 1, 'scritta', 87);
+INSERT INTO voto (materia_ID, studente_ID, tipologia, voto) VALUES(3, 1, 'scritta', 70);
+INSERT INTO voto (materia_ID, studente_ID, tipologia, voto) VALUES(4, 1, 'scritta', 77);
+INSERT INTO voto (materia_ID, studente_ID, tipologia, voto) VALUES(5, 1, 'scritta', 45);
+INSERT INTO voto (materia_ID, studente_ID, tipologia, voto) VALUES(1, 1, 'orale', 60);
+INSERT INTO voto (materia_ID, studente_ID, tipologia, voto) VALUES(2, 1, 'orale', 92);
+INSERT INTO voto (materia_ID, studente_ID, tipologia, voto) VALUES(3, 1, 'orale', 75);
+INSERT INTO voto (materia_ID, studente_ID, tipologia, voto) VALUES(4, 1, 'orale', 67);
+INSERT INTO voto (materia_ID, studente_ID, tipologia, voto) VALUES(5, 1, 'orale', 100);
+INSERT INTO voto (materia_ID, studente_ID, tipologia, voto) VALUES(1, 1, 'pratica', 75);
+INSERT INTO voto (materia_ID, studente_ID, tipologia, voto) VALUES(2, 1, 'pratica', 40);
+INSERT INTO voto (materia_ID, studente_ID, tipologia, voto) VALUES(3, 1, 'pratica', 20);
+INSERT INTO voto (materia_ID, studente_ID, tipologia, voto) VALUES(4, 1, 'pratica', 55);
+INSERT INTO voto (materia_ID, studente_ID, tipologia, voto) VALUES(5, 1, 'pratica', 82);
+
+
+-------------------------------------- RANDOM QUERY --------------------------------------
+
+SELECT materia.materia, voto, tipologia 
+FROM voto
+
+LEFT JOIN studente ON voto.studente_ID = studente.ID
+LEFT JOIN classe ON studente.classe_ID = classe.ID
+LEFT JOIN professore ON classe.professore_ID = professore.ID
+LEFT JOIN materia ON professore.ID = materia.professore_ID
+
+
+WHERE studente.ID = 1
+GROUP BY materia_ID
+
+SELECT classe.sezione, classe.anno FROM studente 
+LEFT JOIN classe ON studente.classe_ID = classe.ID
+WHERE studente.ID = 1
+
+SELECT voto.voto, voto.tipologia, materia.materia FROM studente
+LEFT JOIN voto on studente.ID = voto.studente_ID
+LEFT JOIN materia on voto.materia_ID = materia.ID
+WHERE studente.ID = 1
+
+SELECT voto.voto, voto.tipologia, materia.materia FROM studente
+LEFT JOIN voto on studente.ID = voto.studente_ID
+LEFT JOIN materia on voto.materia_ID = materia.ID
+WHERE studente.ID = 1 AND materia.ID = 1
